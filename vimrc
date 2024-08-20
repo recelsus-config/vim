@@ -91,16 +91,6 @@ if has('syntax')
 endif
 
 " =====================================================================================================================
-" @@ AutoPair
-" =====================================================================================================================
-
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
-
-" =====================================================================================================================
 " @@ Terminal
 " =====================================================================================================================
 
@@ -129,7 +119,7 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_preview=0
-let g:netrw_winsize=20
+let g:netrw_winsize=10
 let g:netrw_altv=1
 let g:netrw_alto=1
 
@@ -151,7 +141,7 @@ function! ToggleNetrw()
     let g:NetrwIsOpen=0
   else
     let g:NetrwIsOpen=1
-    silent Vexplore  " Netrwを水平分割で開く
+    silent Vexplore
   endif
 endfunction
 
