@@ -11,7 +11,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lambdalisue/fern.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'unblevable/quick-scope'
-Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 
@@ -49,13 +48,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 highlight QuickScopePrimary guifg='#afff5f' gui=bold ctermfg=155 cterm=bold
 highlight QuickScopeSecondary guifg='#5fffff' gui=bold ctermfg=81 cterm=bold
 
-" mucomplete の設定
+set complete=.,w,b,u
 set completeopt=menu,menuone,noselect
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#completion_delay = 0
-
-let g:mucomplete#chains = { 'default': ['path', 'file', 'omni', 'keyn', 'word'] }
-
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
