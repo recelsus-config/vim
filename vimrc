@@ -42,5 +42,4 @@ set cmdheight=2
 autocmd BufWritePre * :%s/\s\+$//ge
 
 syntax on
-
 source ~/.vim/plugins.vim

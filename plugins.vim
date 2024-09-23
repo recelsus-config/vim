@@ -11,6 +11,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lambdalisue/fern.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'unblevable/quick-scope'
+Plug 'iaalm/terminal-drawer.vim'
 
 call plug#end()
 
@@ -49,6 +50,7 @@ highlight QuickScopePrimary guifg='#afff5f' gui=bold ctermfg=155 cterm=bold
 highlight QuickScopeSecondary guifg='#5fffff' gui=bold ctermfg=81 cterm=bold
 
 set complete=.,w,b,u
+set path+=**
 set completeopt=menu,menuone,noselect
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
