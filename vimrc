@@ -43,6 +43,7 @@ autocmd BufWritePre * :%s/\s\+$//ge
 
 set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-
 syntax on
+
+if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 source ~/.vim/plugins.vim
