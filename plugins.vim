@@ -27,7 +27,7 @@ set splitbelow
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
-nmap <C-n> :Fern . -reveal=% -drawer -toggle<CR>
+nmap <C-e> :Fern . -reveal=% -drawer -toggle<CR>
 
 augroup FernMappings
   autocmd!
@@ -52,5 +52,3 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=bold ctermfg=81 cterm=bold
 set complete=.,w,b,u
 set path+=**
 set completeopt=menu,menuone,noselect
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
