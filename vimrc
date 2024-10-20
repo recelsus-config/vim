@@ -42,7 +42,7 @@ set cmdheight=2
 autocmd BufWritePre * :%s/\s\+$//ge
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 set modeline
 syntax on
 
