@@ -1,25 +1,61 @@
-この `vim` ディレクトリは、Neovim 設定（`nvim`）に近い使い勝手を保ちつつ、依存プラグインを最小限にした Vim 用の軽量構成です。低スペック環境やオフライン環境を想定しています。
+## Dependencies
 
-使い方
-- 一時的にこの設定のみを使って起動する場合:
-  - `vim -u /path/to/repo/vim/vimrc -U NONE -N`
-    - `-u` でこの `vimrc` を指定
-    - `-U NONE` で GUI 用の `gvimrc` を無効化
-    - `-N` で 'nocompatible' モード（Vi 互換オフ）
+Works offline with bundled plugins. Optional for best experience:
+- Truecolor terminal (for `termguicolors`)
+- System clipboard support (for `clipboard+=unnamedplus`)
 
-方針
-- オフライン動作を重視し、vim-plug の自動インストールは行いません。
-- すでに同梱されているプラグイン（`vim/plugged/*`）をそのまま利用します。
-- `vim/plugins.vim` は自身のフォルダを起点にプラグインと `autoload/plug.vim` を解決します。
-- `autoload/plug.vim` が無い場合はプラグインを読み込まず、コア設定のみで動作します。
+## Keymap List
 
-含まれるプラグイン（最小構成）
-- onedark.vim（配色）
-- quick-scope（`f/F/t/T` のジャンプ補助）
-- auto-pairs（括弧自動補完）
-- fern.vim（ファイラ、存在時のみマッピングを定義）
-- terminal-drawer.vim（簡易ターミナルドロワ）
+### Tab Related Operations
+- `<leader>1..9`: Go to tab 1..9
+- `<leader>t`: Open a new tab (`:tabnew`)
+- `<leader>q`: Close the current tab (`:tabclose`)
 
-補足
-- `vim/plugins.vim` 内の Fern 設定・マッピングは `:Fern` コマンドが存在する場合のみ有効化されます（プラグイン未読込時は安全に無効）。
-- 配色は `onedark` を試し、失敗時は `default` にフォールバックします。
+### File Explorer (Fern)
+- `<C-e>`: Toggle Fern drawer at project root and reveal current file
+- Inside Fern buffer
+  - `<CR>`: Open
+  - `-`: Go up one directory
+  - `<C-v>`: Open in vertical split
+  - `<C-x>`: Open in horizontal split
+
+### Terminal Drawer
+- `<C-t>`: Toggle terminal drawer (terminal-drawer.vim)
+
+### Window Navigation
+- Use default Vim: `<C-w> h/j/k/l`
+
+### QuickScope
+- Highlights targets for `f/F/t/T` to ease jump navigation
+
+## Configuration Structure
+
+- Core config: `vimrc`
+- Plugins and UI tweaks: `plugins.vim`
+- Plugin manager: `autoload/plug.vim` (vim-plug; bundled)
+- Local plugins: `plugged/`
+
+Bundled minimal plugins
+- `joshdick/onedark.vim` (colorscheme)
+- `unblevable/quick-scope` (jump hints)
+- `jiangmiao/auto-pairs` (pairs)
+- `lambdalisue/fern.vim` (file explorer)
+- `iaalm/terminal-drawer.vim` (terminal)
+
+## Notes
+
+- Fern present: disables netrw and provides drawer on `<C-e>`.
+- `<C-e>` is mapped in normal mode only; default scroll-down is replaced.
+- Colorscheme tries `onedark`, falls back to `default`.
+- Uses `termguicolors` and `unnamedplus` when available.
+
+## How to Run
+
+- Use this config temporarily:
+  - `vim -u /home/reg/.vim/vimrc -U NONE -N`
+    - `-u` pick this `vimrc`
+    - `-U NONE` disable `gvimrc`
+    - `-N` use 'nocompatible' mode
+
+Portable launcher
+- `vim/bin/vim-portable` executes `vim -u vimrc -U NONE -N`
