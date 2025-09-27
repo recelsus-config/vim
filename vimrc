@@ -1,3 +1,6 @@
+" Neovim-like lightweight defaults
+let mapleader = ' '
+
 set number
 set noerrorbells
 set nowritebackup
@@ -46,5 +49,25 @@ set fileencodings=utf-8
 set modeline
 syntax on
 
+" Neovim-like behavior tweaks
+set hidden
+if has('termguicolors')
+  set termguicolors
+endif
+if has('clipboard')
+  set clipboard+=unnamedplus
+endif
+set signcolumn=yes
+
 if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
-source ~/.vim/plugins.vim
+
+" 設定ディレクトリ（このファイルの場所）を特定し、plugins.vim を相対パスで読み込む
+let s:cfgdir = expand('<sfile>:p:h')
+execute 'source' fnameescape(s:cfgdir . '/plugins.vim')
+
+" Simple tab operations
+nnoremap <silent> <leader>t :tabnew<CR>
+nnoremap <silent> <leader>q :tabclose<CR>
+for i in range(1, 9)
+  execute 'nnoremap <silent> <leader>'.i.' '.i.'gt'
+endfor

@@ -1,45 +1,45 @@
-let plug_vim_path = expand('~/.vim/autoload/plug.vim')
+" この設定ディレクトリを基準に、オフラインでも動くように構成
+let s:cfgdir = expand('<sfile>:p:h')
+let plug_vim_path = s:cfgdir . '/autoload/plug.vim'
 
-if !filereadable(plug_vim_path)
-  echo "Installing vim-plug..."
-  silent execute '!curl -fLo ' . plug_vim_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if filereadable(plug_vim_path)
+  execute 'source' fnameescape(plug_vim_path)
+  call plug#begin(s:cfgdir . '/plugged')
+else
+  echohl WarningMsg | echom 'vim-plug (autoload/plug.vim) が見つかりません。プラグインは読み込まれません。' | echohl None
 endif
-
-call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs'
-Plug 'lambdalisue/fern.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'unblevable/quick-scope'
-Plug 'iaalm/terminal-drawer.vim'
-
-call plug#end()
+if exists('*plug#begin')
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'lambdalisue/fern.vim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'unblevable/quick-scope'
+  Plug 'iaalm/terminal-drawer.vim'
+  call plug#end()
+endif
 
 syntax enable
 set background=dark
-colorscheme onedark
+if exists('g:colors_name') || exists('*colorscheme')
+  try | colorscheme onedark | catch | colorscheme default | endtry
+endif
 
 set splitright
 set splitbelow
 
-" ======= Fern
+" Fern drawer toggle (map always; no-op if Fern missing)
+nnoremap <silent> <C-e> :<C-u>silent! Fern . -reveal=% -drawer -toggle<CR>
 
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-
-nmap <C-e> :Fern . -reveal=% -drawer -toggle<CR>
-
+" ======= Fern（存在する場合のみ FileType で適用）
 augroup FernMappings
   autocmd!
   autocmd FileType fern call s:fern_custom_mappings()
 augroup END
 
 function! s:fern_custom_mappings() abort
-  nmap <buffer> <Enter> <Plug>(fern-action-open)
-  nmap <buffer> - <Plug>(fern-action-leave)
-
-  nmap <buffer> <C-v> <Plug>(fern-action-open:vsplit)
-  nmap <buffer> <C-x> <Plug>(fern-action-open:split)
+  nnoremap <silent> <buffer> <CR> <Plug>(fern-action-open)
+  nnoremap <silent> <buffer> -   <Plug>(fern-action-leave)
+  nnoremap <silent> <buffer> <C-v> <Plug>(fern-action-open:vsplit)
+  nnoremap <silent> <buffer> <C-x> <Plug>(fern-action-open:split)
 endfunction
 
 " ====== QuickScope
