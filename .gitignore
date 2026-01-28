@@ -8,3 +8,9 @@ autoload/plug.vim
 
 # Helptags generated inside plugins (defensive; covered by plugged/)
 **/doc/tags
+
+# netrw history file
+.netrwhist
+
+# macOS metadata
+.DS_Store

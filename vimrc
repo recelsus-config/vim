@@ -61,9 +61,17 @@ set signcolumn=yes
 
 if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 
-" 設定ディレクトリ（このファイルの場所）を特定し、plugins.vim を相対パスで読み込む
+set splitright
+set splitbelow
+set complete=.,w,b,u
+set path+=**
+set completeopt=menu,menuone,noselect
+
+" conf.d 以下を順に読み込む
 let s:cfgdir = expand('<sfile>:p:h')
-execute 'source' fnameescape(s:cfgdir . '/plugins.vim')
+for s:conf in glob(s:cfgdir . '/conf.d/*.vim', 0, 1)
+  execute 'source' fnameescape(s:conf)
+endfor
 
 " Simple tab operations
 nnoremap <silent> <leader>t :tabnew<CR>
