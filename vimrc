@@ -1,4 +1,4 @@
-" Neovim-like lightweight defaults
+" --- Core defaults ---
 let mapleader = ' '
 
 set number
@@ -49,7 +49,7 @@ set fileencodings=utf-8
 set modeline
 syntax on
 
-" Neovim-like behavior tweaks
+" --- Behaviour tweaks ---
 set hidden
 if has('termguicolors')
   set termguicolors
@@ -67,13 +67,13 @@ set complete=.,w,b,u
 set path+=**
 set completeopt=menu,menuone,noselect
 
-" conf.d 以下を順に読み込む
+" --- Load conf.d snippets ---
 let s:cfgdir = expand('<sfile>:p:h')
 for s:conf in glob(s:cfgdir . '/conf.d/*.vim', 0, 1)
   execute 'source' fnameescape(s:conf)
 endfor
 
-" Simple tab operations
+" --- Tab mappings ---
 nnoremap <silent> <leader>t :tabnew<CR>
 nnoremap <silent> <leader>q :tabclose<CR>
 for i in range(1, 9)

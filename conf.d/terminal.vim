@@ -1,4 +1,4 @@
-" シンプルなターミナルトグル。
+" --- Terminal drawer toggle ---
 let g:terminal_bufnr = -1
 if !exists('g:terminal_drawer_height')
   let g:terminal_drawer_height = 8

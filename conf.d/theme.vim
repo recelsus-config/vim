@@ -1,4 +1,4 @@
-" テーマと描画系の共通設定
+" --- Theme defaults ---
 syntax enable
 set background=dark
 if exists('*colorscheme')

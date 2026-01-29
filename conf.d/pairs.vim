@@ -1,4 +1,4 @@
-" 簡易な括弧・クォート補完
+" --- Pair completion helpers ---
 let s:bracket_pairs = {
       \ '(': ')',
       \ '[': ']',

@@ -1,4 +1,4 @@
-" netrw 全般の表示設定
+" --- netrw display defaults ---
 let g:netrw_banner = 0
 let g:netrw_liststyle = 1
 let g:netrw_winsize = 20
@@ -6,7 +6,7 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_keepdir = 0
 
-" Drawer を開く際の基準ディレクトリ
+" --- netrw drawer root ---
 function! s:netrw_reveal_dir() abort
   let l:dir = expand('%:p:h')
   if empty(l:dir)
@@ -15,7 +15,7 @@ function! s:netrw_reveal_dir() abort
   return l:dir
 endfunction
 
-" netrw バッファを保持しているウィンドウ番号を探索
+" --- find active netrw window ---
 function! s:netrw_winnr() abort
   for l:win in range(1, winnr('$'))
     let l:buf = winbufnr(l:win)
@@ -26,7 +26,7 @@ function! s:netrw_winnr() abort
   return -1
 endfunction
 
-" <C-e> で netrw Drawer をトグル
+" --- toggle netrw drawer ---
 function! s:netrw_toggle() abort
   let l:win = s:netrw_winnr()
   if l:win != -1
@@ -38,7 +38,7 @@ endfunction
 
 nnoremap <silent> <C-e> :call <SID>netrw_toggle()<CR>
 
-" netrw バッファ専用キーマップ
+" --- netrw mappings ---
 augroup NetrwMappings
   autocmd!
   autocmd FileType netrw call s:netrw_custom_mappings()
