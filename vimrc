@@ -32,7 +32,7 @@ set guioptions+=a
 set smartindent
 set noswapfile
 set title
-set clipboard+=unnamed,autoselect
+set clipboard+=unnamedplus
 set ignorecase
 set smartcase
 set wrapscan
