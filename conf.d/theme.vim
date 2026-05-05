@@ -1,6 +1,6 @@
 " --- Theme defaults ---
 syntax enable
 set background=dark
-if exists('*colorscheme')
-  try | colorscheme default | catch | endtry
+if exists(':colorscheme')
+  try | colorscheme slate | catch | endtry
 endif
